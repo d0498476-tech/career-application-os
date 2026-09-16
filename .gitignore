@@ -1,0 +1,25 @@
+# Private runtime data must not enter a skill distribution.
+/Career-OS/
+/vault/
+/private/
+/outputs/
+/attachments/
+**/.history/
+**/99_Raw/
+**/__pycache__/
+*.py[cod]
+.env
+.env.*
+*.local.*
+*.pdf
+*.docx
+*.pptx
+*.xlsx
+*.jpg
+*.jpeg
+*.png
+*.webp
+*.zip
+*.log
+.DS_Store
+Thumbs.db

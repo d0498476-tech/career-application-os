@@ -1,0 +1,4 @@
+interface:
+  display_name: "Career Application OS"
+  short_description: "职业探索、证据管理、岗位申请与面试准备的一体化个人系统"
+  default_prompt: "使用 $career-application-os，根据我的请求选择职业探索、岗位研究、适配分析、申请或面试流程，优先复用我的私有 Career-OS 证据库。"
