@@ -4,6 +4,28 @@
 
 本仓库只包含通用 skill 指令、空白模板和校验工具，不包含任何使用者的简历、联系方式、照片、公司内部资料或真实申请记录。
 
+## 借鉴来源与致谢
+
+本项目主要借鉴两个上游项目。它们已有的求职流程、事实约束和工作台设计不应被描述为本项目独创。
+
+| 来源 | 借鉴与可选复用的内容 | 本仓库的集成方式 |
+| --- | --- | --- |
+| [ASu-skills](https://github.com/Hisn00w/ASu-skills)，作者 Hisn00w | 这是一组专项 skill，而非单一 skill：`job-match` 的岗位匹配，`great-resume` 的真实经历改写，`make-resume` 的可编辑简历与打印，`interview` 的证据驱动追问，`offer` 的进度管理，以及 `evidence-recap` 的证据复盘。 | 用 [ASu 集成映射](skills/career-application-os/integrations/asu-skills.md) 交接给已独立安装的专项 skill；不复制其完整流程或分发其源码、模板。 |
+| [Tailor Job Application](https://github.com/ariasrsu/tailor-job-application-skill)，作者 ariasrsu | 单文件、无运行依赖的 HTML 求职工作台：集中呈现岗位分析、简历、求职材料、面试准备和投递记录，支持简历模板与打印。 | 用 [Tailor 集成映射](skills/career-application-os/integrations/tailor-job-application.md) 将整理好的事实与申请内容交给可选输出 skill；不分发上游渲染器、页面源码或资源。 |
+
+Career Application OS 是围绕这些能力增加的持久知识层和工作流编排，不是两个上游项目的官方产品，也不表示上游作者为本项目背书。来源版本、许可检查结果与分发边界详见 [THIRD_PARTY.md](THIRD_PARTY.md)。
+
+## 本项目新增与调整
+
+以下是本项目相对于上述借鉴内容所做的组织、规则与发布调整，不表示上游完全没有相近能力：
+
+1. **从单次求职任务变成可复用 Career OS。** 增加私有 Evidence Vault、证据索引、岗位卡、公司知识和申请目录；保留来源链接，多个 JD 复用同一条事实，不把每次简历改写存成一份新经历。
+2. **调整默认路由和完成条件。** 完整 JD 默认 APPLICATION；只有明确“只分析 / 只研究”等才进入只读模式。岗位匹配是中间步骤，后续继续完成简历策略、简历、ATS、面试准备、决策和申请归档。
+3. **把未知信息变成非阻塞确认清单。** 毕业时间、证书、地点意愿等未知信息标为 NEED_CONFIRMATION；可安全完成的部分继续，不用未知值冒充事实，也不因为一个字段缺失停止整个流程。
+4. **细化事实与推断的使用边界。** 在上游真实性原则基础上，明确 VERIFIED / REFRAMED / INFERRED / PROJECT_TO_COMPLETE 四种状态、Conflict List 和责任边界；正式简历不自动采用推断或未完成项目。
+5. **补充可编辑工作台的扩展规范。** 规定确认一次同步多处，以 Profile + 当前申请确认 + 简历版本为事实源，写回 Markdown 并先备份；手动删除自动填充 bullet 后不能在保存时重新补回。公开包提供的是 [扩展规范](skills/career-application-os/references/workspace-editing.md)，不是已经实现这些功能的完整网页服务。
+6. **改成去个人化、可移植的发布包。** 使用中性的 skill 名称与运行时路径配置，提供不覆盖已有资料的空白 Vault 初始化、环境检查、隐私扫描，以及 11 项路由和 Vault 测试；不携带原使用者的数据、机器路径或历史授权。
+
 ## 核心行为
 
 - 完整或明显可识别的 JD 默认进入 APPLICATION；用户明确要求“只分析 / 只研究 / 只是看看”时才进入只读模式。
